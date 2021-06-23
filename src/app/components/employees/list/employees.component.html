@@ -1,0 +1,148 @@
+
+<p-toast></p-toast>
+
+<h1>Employees</h1>
+
+<p>Here's a list of employees</p>
+
+<hr>
+<div *ngIf="employees" class="text-right d-flex justify-content-end">
+    <button pButton pRipple type="button" [routerLink]="['new']" label="New" class="p-button-success m-2" icon="pi pi-plus"></button>
+    <!-- <button pButton pRipple type="button" [routerLink]="['edit']" label="Edit" class="p-button-success m-2" icon="pi pi-pencil"></button> -->
+    <!-- <button pButton pRipple type="button" [routerLink]="['detail']" label="Detail" class="p-button-success m-2" icon="pi pi-eye"></button> -->
+</div>
+
+<div class="card">
+<p-table #dt [value]="employees" class="testtable" dataKey="id" 
+    styleClass="p-datatable-employees employeeTable"
+    [rowHover]="true"
+    editMode="row"
+    [rows]="10" [showCurrentPageReport]="true" 
+    [rowsPerPageOptions]="[10,25,50]" 
+    [loading]="loading"
+    [paginator]="true" 
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [filterDelay]="0" 
+    [globalFilterFields]="['name','surname']">
+    <ng-template pTemplate="caption">
+        <div class="table-header">
+            List of Employees
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input #inputText pInputText type="text" (input)="dt.filterGlobal(inputText.value, 'contains')" placeholder="Global Search" />
+            </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="name">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Name
+                    <p-sortIcon field="name"></p-sortIcon>
+                    <p-columnFilter type="text" field="name" display="menu" class="p-ml-auto"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="surname">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Surname
+                    <p-sortIcon field="surname"></p-sortIcon>
+                    <p-columnFilter type="text" field="surname" display="menu" class="p-ml-auto"></p-columnFilter>
+                </div>
+            </th>
+            
+            <th pSortableColumn="birthDate">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Birthday
+                    <p-sortIcon field="date"></p-sortIcon>
+                    <p-columnFilter type="date" field="birthDate" display="menu" class="p-ml-auto"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="workPosition">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Work Position
+                    <p-sortIcon field="workPosition"></p-sortIcon>
+                    <p-columnFilter field="workPosition" matchMode="equals" display="menu" class="p-ml-auto">
+                        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                            <p-dropdown [ngModel]="value" [options]="workPositions" optionLabel="name" optionValue="name" (onChange)="filter($event.value)" placeholder="Select a Position" [showClear]="true">
+                            </p-dropdown>
+                        </ng-template>
+                    </p-columnFilter>
+                </div>
+            </th>
+            <th style="width:8rem">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Actions
+                </div>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-employee let-editing="editing" let-ri="rowIndex">
+        <tr [pEditableRow]="employee">
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="employee.name">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{employee.name}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td>
+                {{employee.surname}}
+                <!-- <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="employee.surname">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{employee.surname}}
+                    </ng-template>
+                </p-cellEditor> -->
+            </td>
+
+            <td>
+                {{employee.birthDate | date: 'dd/MM/yyyy'}}
+                <!-- <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-calendar appendTo="body" [(ngModel)]="employee.birthDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2005" inputId="navigators"></p-calendar>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        
+                    </ng-template>
+                </p-cellEditor> -->
+            </td>
+
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-dropdown [options]="workPositions" appendTo="body" placeholder="Select a Position" [(ngModel)]="employee.workPosition" optionLabel="name" optionValue="name"></p-dropdown>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{employee.workPosition}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td style="text-align:center">
+                <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(employee)" pTooltip="Edit" tooltipPosition="top" class="p-button-rounded p-button-outlined m-1"></button>
+                <button *ngIf="!editing" pButton pRipple type="button" icon="pi pi-trash" (click)="onRowDelete(employee)" pTooltip="Delete" tooltipPosition="top" class="p-button-rounded p-button-outlined p-button-danger m-1"></button>
+                <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(employee, ri)" pTooltip="Save" tooltipPosition="top" class="p-button-rounded p-button-outlined p-button-success p-mr-2 m-1"></button>
+                <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(ri)" pTooltip="Cancel" tooltipPosition="top" class="p-button-rounded p-button-outlined p-button-danger m-1"></button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="5">No employees found.</td>
+        </tr>
+    </ng-template>
+</p-table>
+
+
+</div>
+
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+
+
+<!-- <router-outlet></router-outlet> -->

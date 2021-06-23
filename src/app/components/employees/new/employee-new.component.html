@@ -1,0 +1,73 @@
+
+<p-toast></p-toast>
+
+
+<div class="container-fluid">
+    <h1>New Employee</h1>
+    <p>Here you can hire a new employee</p>
+    <hr>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" id="newEmployeeForm">
+
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="name">Name</label>
+                <input id="name" class="is-invalid" type="text" pInputText formControlName="name">
+                <div class="error invalid-feedback" *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched">
+                    Name is required
+                </div>
+                <div class="error invalid-feedback" *ngIf="form.get('name')?.hasError('minlength') && form.get('name')?.touched">
+                    Minimum of 2 characters
+                </div>
+                <div class="error invalid-feedback" *ngIf="form.get('name')?.hasError('maxlength') && form.get('name')?.touched">
+                    Maximum of 50 characters
+                </div>
+            </div>
+            <div class="p-field p-col">
+                <label for="surname">Surname</label>
+                <input id="surname" class="is-invalid" type="text" pInputText formControlName="surname">
+                <div class="error invalid-feedback" *ngIf="form.get('surname')?.hasError('required') && form.get('surname')?.touched">
+                    Surname is required
+                </div>
+                <div class="error invalid-feedback" *ngIf="form.get('surname')?.hasError('minlength') && form.get('surname')?.touched">
+                    Minimum of 2 characters
+                </div>
+                <div class="error invalid-feedback" *ngIf="form.get('surname')?.hasError('maxlength') && form.get('surname')?.touched">
+                    Maximum of 100 characters
+                </div>
+            </div>
+        </div>
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="birthDate">Birthday</label>
+                <p-calendar appendTo="body" dateFormat="dd/mm/yy" class="is-invalid" formControlName="birthDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2005" inputId="navigators" name="birthDate"></p-calendar>
+                <div class="error invalid-feedback" *ngIf="form.get('birthDate')?.hasError('required') && form.get('birthDate')?.touched">
+                    Birthday is required
+                </div>
+            </div>
+            <div class="p-field p-col">
+                <label for="name">Work Position</label>
+                <p-dropdown formControlName="workPosition" [options]="workPositions" optionLabel="name" optionValue="name"
+                placeholder="Select a Position" class="is-invalid">
+                </p-dropdown>
+                <div class="error invalid-feedback" *ngIf="form.get('workPosition')?.hasError('required') && form.get('workPosition')?.touched">
+                    Work Position is required
+                </div>
+            </div>
+        </div>
+      
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col-4">
+                <p-button [loading]="saving" [disabled]="form.invalid" label="Submit" type="submit" icon="pi pi-check" class="p-button-success"></p-button>
+            </div>
+            <div class="p-col-4 p-offset-4" style="text-align: right;">
+                <p-button label="Back to List" type="button"  icon="pi pi-arrow-left" (onClick)="goBackToList()"></p-button>
+            </div>
+        </div>
+        
+      
+    </form>
+</div>
+
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+

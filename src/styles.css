@@ -1,1 +1,91 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+html,body { 
+    height:100%; 
+    margin: 0;
+}
+
+.content{
+    min-height: 100%;
+    margin: 0 auto -50px;
+}
+
+/* html,body { 
+    height:100%; 
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    margin-top: auto;
+}
+
+.footer {
+    flex-shrink: 0;
+} */
+
+/* html {
+    height: 100%;
+  }
+  body {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
+  }
+  .footer {
+    grid-row-start: 2;
+    grid-row-end: 3;
+  } */
+
+
+.employeeTable .p-datatable-header{
+    background-color:  #1f2d40;
+    
+}
+
+
+
+/* .example .p-datatable-tbody{
+    background-color:  #1f2d40;
+}
+
+.example .p-datatable-thead{
+    background-color:  #1f2d40;
+}
+
+.example th{
+    color:  #1f2d40;
+} */
+
+
+
+.p-datatable .p-datatable-employees .p-datatable-header{
+    padding: 1rem;
+    text-align: left;
+    font-size: 1.5rem;
+}
+
+.p-datatable .p-datatable-employees .p-paginator{
+    padding: 1rem;
+}
+
+.p-datatable .p-datatable-employees .p-datatable-thead > tr > th {
+    text-align: left;
+}
+
+.p-datatable .p-datatable-employees .p-datatable-tbody > tr > td {
+    cursor: auto;
+}
+
+.p-datatable .p-datatable-employees .p-dropdown-label:not(.p-placeholder) {
+    text-transform: uppercase;
+}
+
+/* Responsive */
+.p-datatable-employees .p-datatable-tbody > tr > td .p-column-title {
+    display: none;
+}
