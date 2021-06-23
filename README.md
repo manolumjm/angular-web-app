@@ -1,13 +1,13 @@
 # Angular-web-app
 
 This project is a Angular web application where you can register and list employees of your company. 
-Angular cli v12, PrimeNG UI library v12 and Bootstrap v5 are used in this project.
+Angular cli version 12, PrimeNG UI library version 12 and Bootstrap 5 are used in this project.
 
-## Prerequisite
+## Prerequisites
 
 First, you need to install [Node.js](https://nodejs.org/) version 12 or higher.
 
-Secondly, you need to install [Angular CLI](https://angular.io/guide/setup-local) version 12 or higher using the command `npm install -g @angular/cli`. 
+Then you need to install [Angular CLI](https://angular.io/guide/setup-local) version 12 or higher using the command `npm install -g @angular/cli`. 
 
 ## Installation
 
@@ -17,4 +17,4 @@ Run `ng serve` for build and serve your web app in a local environment. Navigate
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` if you want to execute the unit tests via [Karma](https://karma-runner.github.io).
