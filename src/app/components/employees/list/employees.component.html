@@ -8,8 +8,6 @@
 <hr>
 <div *ngIf="employees" class="text-right d-flex justify-content-end">
     <button pButton pRipple type="button" [routerLink]="['new']" label="New" class="p-button-success m-2" icon="pi pi-plus"></button>
-    <!-- <button pButton pRipple type="button" [routerLink]="['edit']" label="Edit" class="p-button-success m-2" icon="pi pi-pencil"></button> -->
-    <!-- <button pButton pRipple type="button" [routerLink]="['detail']" label="Detail" class="p-button-success m-2" icon="pi pi-eye"></button> -->
 </div>
 
 <div class="card">
@@ -91,26 +89,10 @@
 
             <td>
                 {{employee.surname}}
-                <!-- <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <input pInputText type="text" [(ngModel)]="employee.surname">
-                    </ng-template>
-                    <ng-template pTemplate="output">
-                        {{employee.surname}}
-                    </ng-template>
-                </p-cellEditor> -->
             </td>
 
             <td>
                 {{employee.birthDate | date: 'dd/MM/yyyy'}}
-                <!-- <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <p-calendar appendTo="body" [(ngModel)]="employee.birthDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2005" inputId="navigators"></p-calendar>
-                    </ng-template>
-                    <ng-template pTemplate="output">
-                        
-                    </ng-template>
-                </p-cellEditor> -->
             </td>
 
             <td>
@@ -144,5 +126,3 @@
 
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
 
-
-<!-- <router-outlet></router-outlet> -->
