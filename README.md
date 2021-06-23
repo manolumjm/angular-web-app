@@ -1,27 +1,20 @@
 # Angular-web-app
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.4.
+This project is a Angular web application where you can register and list employees of your company. 
+Angular cli v12, PrimeNG UI library v12 and Bootstrap v5 are used in this project.
 
-## Development server
+## Prerequisite
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+First, you need to install [Node.js](https://nodejs.org/) version 12 or higher.
 
-## Code scaffolding
+Secondly, you need to install [Angular CLI](https://angular.io/guide/setup-local) version 12 or higher using the command `npm install -g @angular/cli`. 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation
 
-## Build
+Run `npm install` for install all packages and dependencies required for the project.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng serve` for build and serve your web app in a local environment. Navigate to `http://localhost:4200/` to view the web application.
 
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
